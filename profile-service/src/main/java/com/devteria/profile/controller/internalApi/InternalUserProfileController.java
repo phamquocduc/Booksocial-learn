@@ -1,4 +1,4 @@
-package com.devteria.profile.controller;
+package com.devteria.profile.controller.internalApi;
 
 import com.devteria.profile.Services.UserProfileServices;
 import com.devteria.profile.dto.request.UserProfileCreationRequest;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class UserProfileController {
+public class InternalUserProfileController {
     UserProfileServices userProfileServices;
 
-    @GetMapping("/users/{id}")
-    public UserProfileResponse getProfile(@PathVariable("id") String id){
+    @PostMapping("/internal/users")
+    public UserProfileResponse createUserProfile(@RequestBody UserProfileCreationRequest request){
 
-        return userProfileServices.getProfile(id);
+        return userProfileServices.createUserProfile(request);
     }
 }
